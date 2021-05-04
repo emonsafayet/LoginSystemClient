@@ -5,10 +5,12 @@ import { User} from '././user/user';
 import {Registration } from './user/registration/registration';
 import { from } from 'rxjs';
 import { Login } from './user/login/login';
+import { Home } from './home/home';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes =[
-  {path:'',redirectTo:'/user/registration',pathMatch:'full'},
+  {path:'',redirectTo:'/user/Login',pathMatch:'full'},
   { 
     path:'user',component:User,
     children:[
@@ -16,7 +18,8 @@ const routes: Routes =[
       { path:"login",component:Login, }
      
     ]
-  }
+  },
+  {path:'home',component:Home,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
